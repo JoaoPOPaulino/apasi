@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home - Apasi Ambiental{% endblock %}
+
+{% block content %}
+<!-- HERO / DESTAQUE -->
+<div class="bg-success text-white p-5 rounded shadow-sm mb-4">
+    <h1 class="display-5 fw-bold">Apasi Ambiental</h1>
+    <p class="lead">Especialistas em coleta, transporte e destinação adequada de resíduos perigosos (classe 1).</p>
+    <a href="{% url 'contato' %}" class="btn btn-light btn-lg mt-3">Fale conosco</a>
+</div>
+
+<!-- SERVIÇOS -->
+<div class="mb-5">
+    <h2 class="mb-4 text-center">Nossos Serviços</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Coleta de Resíduos</h5>
+                    <p class="card-text">Realizamos a coleta de resíduos industriais de forma segura e regulamentada.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Transporte de Resíduos</h5>
+                    <p class="card-text">Transporte especializado de resíduos perigosos, com frota licenciada e rastreável.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Gestão Ambiental</h5>
+                    <p class="card-text">Apoio técnico com documentação, planos de gerenciamento e consultoria ambiental.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="text-center mt-5">
+    <h4 class="mb-3">Precisa de uma solução ambiental confiável?</h4>
+    <a href="{% url 'contato' %}" class="btn btn-success btn-lg px-4">Entre em Contato</a>
+</div>
+{% endblock %}
