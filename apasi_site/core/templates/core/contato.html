@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}Contato - Apasi Ambiental{% endblock %}
 
@@ -6,28 +7,28 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <!-- Cabeçalho com imagem e texto introdutório -->
-            <div class="text-center mb-5">
+            <header class="text-center mb-5">
                 <h1 class="display-5 fw-bold text-success mb-3">Fale Conosco</h1>
-                <p class="lead">Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.</p>
+                <p class="lead text-muted">Preencha o formulário abaixo e nossa equipe entrará em contato em breve.</p>
+                <p class="lead text-muted">Caso queria entrar em contato atravez do WhatsApp ou E-mail:</p>
                 <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-                    <a href="tel:+5511999999999" class="btn btn-outline-success d-flex align-items-center">
-                        <i class="bi bi-telephone-fill me-2"></i>(11) 99999-9999
+                    <a href="tel:+5563999282888" class="btn btn-outline-success d-flex align-items-center">
+                        <i class="bi bi-telephone-fill me-2"></i>(63) 99928-2888
                     </a>
-                    <a href="mailto:contato@apasiambiental.com.br" class="btn btn-outline-success d-flex align-items-center">
-                        <i class="bi bi-envelope-fill me-2"></i>contato@apasiambiental.com.br
+                    <a href="mailto:apasisolicitacoes@gmail.com" class="btn btn-outline-success d-flex align-items-center">
+                        <i class="bi bi-envelope-fill me-2"></i>apasisolicitacoes@gmail.com
                     </a>
                 </div>
-            </div>
+            </header>
 
-            <!-- Formulário em card com sombra -->
             <div class="card border-0 shadow-lg">
                 <div class="card-body p-4 p-md-5">
-                    <form method="POST" novalidate class="needs-validation" id="contactForm">
+                    <form method="POST" novalidate class="needs-validation" id="contactForm" aria-labelledby="formTitle">
                         {% csrf_token %}
-                        
-                        <!-- Seção 1: Informações Pessoais -->
-                        <div class="mb-4">
+                        <h2 id="formTitle" class="sr-only">Formulário de Contato</h2>
+
+                        <!-- Informações Pessoais -->
+                        <section class="mb-4">
                             <h3 class="h4 text-success mb-3 border-bottom pb-2">
                                 <i class="bi bi-person-circle me-2"></i>Informações Pessoais
                             </h3>
@@ -35,35 +36,35 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         {{ form.nome }}
-                                        <label for="{{ form.nome.id_for_label }}">Nome Completo</label>
+                                        <label for="{{ form.nome.id_for_label }}">Nome Completo *</label>
                                         {% if form.nome.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.nome.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.nome.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         {{ form.email }}
-                                        <label for="{{ form.email.id_for_label }}">E-mail</label>
+                                        <label for="{{ form.email.id_for_label }}">E-mail *</label>
                                         {% if form.email.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.email.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.email.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         {{ form.telefone }}
-                                        <label for="{{ form.telefone.id_for_label }}">Telefone</label>
+                                        <label for="{{ form.telefone.id_for_label }}">Telefone *</label>
                                         {% if form.telefone.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.telefone.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.telefone.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <!-- Seção 2: Identificação -->
-                        <div class="mb-4">
+                        <!-- Identificação -->
+                        <section class="mb-4">
                             <h3 class="h4 text-success mb-3 border-bottom pb-2">
                                 <i class="bi bi-card-checklist me-2"></i>Identificação
                             </h3>
@@ -71,9 +72,9 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         {{ form.tipo_pessoa }}
-                                        <label for="{{ form.tipo_pessoa.id_for_label }}">Tipo de Pessoa</label>
+                                        <label for="{{ form.tipo_pessoa.id_for_label }}">Tipo de Pessoa *</label>
                                         {% if form.tipo_pessoa.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.tipo_pessoa.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.tipo_pessoa.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -82,7 +83,7 @@
                                         {{ form.cpf }}
                                         <label for="{{ form.cpf.id_for_label }}">CPF</label>
                                         {% if form.cpf.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.cpf.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.cpf.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -91,15 +92,15 @@
                                         {{ form.cnpj }}
                                         <label for="{{ form.cnpj.id_for_label }}">CNPJ</label>
                                         {% if form.cnpj.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.cnpj.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.cnpj.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
-                        <!-- Seção 3: Endereço -->
-                        <div class="mb-4">
+                        <!-- Endereço -->
+                        <section class="mb-4">
                             <h3 class="h4 text-success mb-3 border-bottom pb-2">
                                 <i class="bi bi-geo-alt-fill me-2"></i>Endereço para Coleta
                             </h3>
@@ -107,27 +108,27 @@
                                 <div class="col-md-3">
                                     <div class="form-floating">
                                         {{ form.cep }}
-                                        <label for="{{ form.cep.id_for_label }}">CEP</label>
+                                        <label for="{{ form.cep.id_for_label }}">CEP *</label>
                                         {% if form.cep.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.cep.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.cep.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     <div class="form-floating">
                                         {{ form.rua }}
-                                        <label for="{{ form.rua.id_for_label }}">Rua</label>
+                                        <label for="{{ form.rua.id_for_label }}">Rua *</label>
                                         {% if form.rua.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.rua.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.rua.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-floating">
                                         {{ form.numero }}
-                                        <label for="{{ form.numero.id_for_label }}">Número</label>
+                                        <label for="{{ form.numero.id_for_label }}">Número *</label>
                                         {% if form.numero.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.numero.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.numero.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -136,54 +137,54 @@
                                         {{ form.complemento }}
                                         <label for="{{ form.complemento.id_for_label }}">Complemento</label>
                                         {% if form.complemento.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.complemento.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.complemento.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         {{ form.bairro }}
-                                        <label for="{{ form.bairro.id_for_label }}">Bairro</label>
+                                        <label for="{{ form.bairro.id_for_label }}">Bairro *</label>
                                         {% if form.bairro.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.bairro.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.bairro.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-floating">
                                         {{ form.cidade }}
-                                        <label for="{{ form.cidade.id_for_label }}">Cidade</label>
+                                        <label for="{{ form.cidade.id_for_label }}">Cidade *</label>
                                         {% if form.cidade.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.cidade.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.cidade.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-floating">
                                         {{ form.estado }}
-                                        <label for="{{ form.estado.id_for_label }}">UF</label>
+                                        <label for="{{ form.estado.id_for_label }}">UF *</label>
                                         {% if form.estado.errors %}
-                                            <div class="invalid-feedback d-block">{{ form.estado.errors }}</div>
+                                            <div class="invalid-feedback">{{ form.estado.errors|join:", " }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
 
                         <!-- Política de Privacidade -->
                         <div class="form-check mb-4">
                             {{ form.aceita_politica }}
                             <label class="form-check-label" for="{{ form.aceita_politica.id_for_label }}">
-                                Li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#politicaModal">política de privacidade</a>.
+                                Li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#politicaModal">política de privacidade</a> *
                             </label>
                             {% if form.aceita_politica.errors %}
-                                <div class="invalid-feedback d-block">{{ form.aceita_politica.errors }}</div>
+                                <div class="invalid-feedback d-block">{{ form.aceita_politica.errors|join:", " }}</div>
                             {% endif %}
                         </div>
 
-                        <!-- Botão de envio -->
+                        <!-- Botão -->
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg py-3">
+                            <button type="submit" class="btn btn-success btn-lg py-3" aria-label="Enviar formulário de contato">
                                 <i class="bi bi-send-fill me-2"></i>Enviar Mensagem
                             </button>
                         </div>
@@ -194,27 +195,54 @@
     </div>
 </div>
 
-<!-- Modal Política de Privacidade -->
+<!-- Modal de Política de Privacidade -->
 <div class="modal fade" id="politicaModal" tabindex="-1" aria-labelledby="politicaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
                 <h5 class="modal-title" id="politicaModalLabel">Política de Privacidade</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>A Apasi Ambiental respeita sua privacidade e está comprometida em proteger seus dados pessoais.</p>
-                <h6>1. Coleta de Dados</h6>
-                <p>Coletamos apenas os dados necessários para prestar nossos serviços e entrar em contato com você.</p>
-                <h6>2. Uso dos Dados</h6>
-                <p>Seus dados serão usados exclusivamente para:</p>
+                <p>A <strong>Apasi Ambiental</strong> valoriza a privacidade e a proteção dos dados pessoais de seus usuários, em conformidade com a <strong>Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD)</strong>. Esta política visa esclarecer como coletamos, utilizamos, armazenamos e protegemos as informações fornecidas por você.</p>
+
+                <h6 class="mt-4">1. Coleta de Dados Pessoais</h6>
+                <p>Coletamos dados pessoais fornecidos voluntariamente por você por meio de nossos formulários, como:</p>
                 <ul>
-                    <li>Agendamento de serviços</li>
-                    <li>Comunicação sobre seu pedido</li>
-                    <li>Melhoria de nossos serviços</li>
+                    <li>Nome completo</li>
+                    <li>E-mail</li>
+                    <li>Telefone</li>
+                    <li>CPF ou CNPJ</li>
+                    <li>Endereço</li>
                 </ul>
-                <h6>3. Compartilhamento</h6>
-                <p>Não compartilhamos seus dados com terceiros sem sua autorização explícita.</p>
+
+                <h6 class="mt-4">2. Finalidade do Tratamento</h6>
+                <p>Os dados coletados são utilizados exclusivamente para as seguintes finalidades:</p>
+                <ul>
+                    <li>Atendimento de solicitações e prestação de serviços contratados;</li>
+                    <li>Envio de comunicações relacionadas às suas demandas;</li>
+                    <li>Aprimoramento contínuo de nossos serviços e processos internos.</li>
+                </ul>
+
+                <h6 class="mt-4">3. Compartilhamento de Dados</h6>
+                <p>Não compartilhamos seus dados com terceiros, exceto nas seguintes hipóteses:</p>
+                <ul>
+                    <li>Mediante seu consentimento expresso;</li>
+                    <li>Para cumprimento de obrigações legais ou ordens judiciais.</li>
+                </ul>
+
+                <h6 class="mt-4">4. Segurança da Informação</h6>
+                <p>Adotamos medidas técnicas e administrativas para garantir a segurança, integridade e confidencialidade dos seus dados, protegendo-os contra acessos não autorizados, vazamentos ou qualquer forma de tratamento inadequado.</p>
+
+                <h6 class="mt-4">5. Direitos do Titular</h6>
+                <p>Nos termos da LGPD, você tem o direito de:</p>
+                <ul>
+                    <li>Acessar seus dados pessoais;</li>
+                    <li>Solicitar correção de dados incompletos ou desatualizados;</li>
+                    <li>Requerer a exclusão de dados desnecessários ou tratados em desconformidade com a legislação;</li>
+                    <li>Revogar o consentimento, quando aplicável.</li>
+                </ul>
+                <p>Para exercer seus direitos, entre em contato conosco por meio dos canais disponíveis no site.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Entendi</button>
@@ -223,59 +251,56 @@
     </div>
 </div>
 
-<!-- Scripts específicos para esta página -->
+
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         // Máscaras
         $('#id_telefone').mask('(00) 00000-0000');
         $('#id_cep').mask('00000-000');
         $('#id_cpf').mask('000.000.000-00');
         $('#id_cnpj').mask('00.000.000/0000-00');
 
-        // API do CEP
-        $('#id_cep').on('blur', function() {
+        // Busca de CEP
+        $('#id_cep').on('blur', async function() {
             const cep = $(this).val().replace(/\D/g, '');
             if (cep.length === 8) {
-                $.get(`https://viacep.com.br/ws/${cep}/json/`, function(data) {
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const data = await response.json();
                     if (!data.erro) {
-                        $('#id_rua').val(data.logradouro).trigger('change');
-                        $('#id_bairro').val(data.bairro).trigger('change');
-                        $('#id_cidade').val(data.localidade).trigger('change');
-                        $('#id_estado').val(data.uf).trigger('change');
+                        $('#id_rua').val(data.logradouro);
+                        $('#id_bairro').val(data.bairro);
+                        $('#id_cidade').val(data.localidade);
+                        $('#id_estado').val(data.uf);
                     } else {
                         alert('CEP não encontrado.');
                     }
-                }).fail(function() {
+                } catch (error) {
                     alert('Erro ao buscar o CEP.');
-                });
+                }
             }
         });
 
-        // Alternar CPF/CNPJ com base no tipo de pessoa
-        $('#id_tipo_pessoa').change(function() {
-            if ($(this).val() === 'Física') {
+        // Alternar CPF/CNPJ
+        $('#id_tipo_pessoa').on('change', function() {
+            const value = $(this).val();
+            $('#cpfField, #cnpjField').addClass('d-none');
+            $('#id_cpf, #id_cnpj').val('');
+            if (value === 'Física') {
                 $('#cpfField').removeClass('d-none');
-                $('#cnpjField').addClass('d-none');
-                $('#id_cnpj').val('');
-            } else if ($(this).val() === 'Jurídica') {
-                $('#cpfField').addClass('d-none');
+            } else if (value === 'Jurídica') {
                 $('#cnpjField').removeClass('d-none');
-                $('#id_cpf').val('');
-            } else {
-                $('#cpfField').addClass('d-none');
-                $('#cnpjField').addClass('d-none');
-                $('#id_cpf').val('');
-                $('#id_cnpj').val('');
             }
         }).trigger('change');
 
-        // Validação ao enviar o formulário
-        $('#contactForm').submit(function(e) {
+        // Validação de política de privacidade
+        $('#contactForm').on('submit', function(e) {
             if (!$('#id_aceita_politica').is(':checked')) {
                 e.preventDefault();
-                alert('Por favor, aceite a política de privacidade para continuar.');
+                alert('Por favor, aceite a política de privacidade.');
                 $('#politicaModal').modal('show');
             }
         });

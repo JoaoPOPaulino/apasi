@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Canais de Atendimento - Apasi Ambiental{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/canais_atendimento.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <header class="text-center mb-5">
+                <h1 class="display-5 fw-bold text-success mb-3">Canais de Atendimento</h1>
+                <p class="lead text-muted">Entre em contato com nossos setores através dos canais abaixo.</p>
+            </header>
+
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-4 p-md-5">
+                    <section>
+                        <h2 class="h4 text-success mb-4 border-bottom pb-2">
+                            <i class="bi bi-headset me-2"></i>Contatos por Setor
+                        </h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Setor</th>
+                                        <th scope="col">Telefone</th>
+                                        <th scope="col">WhatsApp</th>
+                                        <th scope="col">Horário de Atendimento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Contratos/Comercial</td>
+                                        <td><a href="tel:+556399282888">(63) 99928-2888</a></td>
+                                        <td><a href="https://wa.me/556399282888" target="_blank" class="text-success"><i class="bi bi-whatsapp"></i> WhatsApp</a></td>
+                                        <td>Seg-Quin, 8h às 18h<br>Sex, 8h às 17h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coleta de Resíduos</td>
+                                        <td><a href="tel:+5563999885888">(63) 99988-5888</a></td>
+                                        <td><a href="https://wa.me/556399885888" target="_blank" class="text-success"><i class="bi bi-whatsapp"></i> WhatsApp</a></td>
+                                        <td>Seg-Quin, 8h às 18h<br>Sex, 8h às 17h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Financeiro</td>
+                                        <td><a href="tel:+556392661749">(63) 99266-1749</a></td>
+                                        <td><a href="https://wa.me/556392661749" target="_blank" class="text-success"><i class="bi bi-whatsapp"></i> WhatsApp</a></td>
+                                        <td>Seg-Quin, 8h às 18h<br>Sex, 8h às 17h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Operacional</td>
+                                        <td><a href="tel:+5563992734114">(63) 99273-4114</a></td>
+                                        <td><a href="https://wa.me/556392734114" target="_blank" class="text-success"><i class="bi bi-whatsapp"></i> WhatsApp</a></td>
+                                        <td>Seg-Quin, 8h às 18h<br>Sex, 8h às 17h</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2 class="h4 text-success mb-4 border-bottom pb-2">
+                            <i class="bi bi-envelope-fill me-2"></i>E-mail de Contato
+                        </h2>
+                        <p class="mb-0">
+                            Para dúvidas gerais ou solicitações, envie um e-mail para:
+                            <a href="mailto:apasisolicitacoes@gmail.com" class="text-success fw-bold">apasisolicitacoes@gmail.com</a>
+                        </p>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2 class="h4 text-success mb-4 border-bottom pb-2">
+                            <i class="bi bi-geo-alt-fill me-2"></i>Endereço
+                        </h2>
+                        <p class="mb-0">
+                            Quadra 501 Sul, Conjunto 02, Av. NS 01, Lote 07 - Plano Diretor Sul <br>
+                            Palmas, TO - CEP 77016-006
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

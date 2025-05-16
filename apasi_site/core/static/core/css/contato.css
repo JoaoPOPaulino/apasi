@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #28a745;
+    --primary-hover: #218838;
+    --text-muted: #6c757d;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* Container */
+.container.my-5 {
+    padding: 2rem;
+}
+
+/* Cabeçalho */
+header.text-center.mb-5 {
+    animation: fadeIn 1s ease-in;
+}
+
+.display-5 {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.lead {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+}
+
+/* Botões de Contato */
+.btn-outline-success {
+    border-width: 2px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Card do Formulário */
+.card.shadow-lg {
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+/* Seções */
+.h4.text-success {
+    font-weight: 600;
+    position: relative;
+}
+
+.h4.text-success::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+/* Campos */
+.form-floating > label {
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.form-floating > input,
+.form-floating > select {
+    border-radius: var(--border-radius);
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+    transition: var(--transition);
+}
+
+.form-floating > input:focus,
+.form-floating > select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Campos Específicos */
+#id_cep,
+#id_numero,
+#id_estado {
+    min-width: 120px;
+}
+
+#id_rua,
+#id_bairro,
+#id_cidade {
+    min-width: 200px;
+}
+
+/* Feedback */
+.invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+/* Botão Enviar */
+.btn-success.btn-lg {
+    border-radius: var(--border-radius);
+    padding: 0.875rem 1.25rem;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-success.btn-lg:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Modal */
+.modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+}
+
+.modal-header.bg-success {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.btn-close-white {
+    filter: invert(1);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .btn-success.btn-lg {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .form-floating > input,
+    .form-floating > select {
+        min-width: 100%;
+    }
+
+    .display-5 {
+        font-size: 1.75rem;
+    }
+}
