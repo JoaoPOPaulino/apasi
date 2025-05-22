@@ -16,25 +16,45 @@ def contato(request):
         if form.is_valid():
             contato = form.save()
 
-            # Dados do formulário
             nome = contato.nome
             email = contato.email
             telefone = contato.telefone
+            tipo_pessoa = contato.tipo_pessoa
+            cpf = contato.cpf  # <- Adicionado
+            cnpj = contato.cnpj  # <- Adicionado
+            cep = contato.cep
+            rua = contato.rua
+            numero = contato.numero
+            complemento = contato.complemento
+            bairro = contato.bairro
+            cidade = contato.cidade
+            estado = contato.estado
 
-            # Corpo do e-mail
+            # Corpo do e-mail   
             corpo_email = (
-                f"Novo contato pelo site:\n\n"
-                f"Nome: {nome}\n"
-                f"E-mail: {email}\n"
-                f"Telefone: {telefone}\n\n"
-            )
-
+                    f"Olá, equipe Apasi Ambiental!\n\n"
+                    f"Um novo contato foi enviado através do site. Seguem os detalhes abaixo:\n\n"
+                    f"📌 INFORMAÇÕES DE CONTATO\n"
+                    f"• Nome: {nome}\n"
+                    f"• E-mail: {email}\n"
+                    f"• Telefone: {telefone}\n\n"
+                    f"📌 IDENTIFICAÇÃO\n"
+                    f"• Tipo de Pessoa: {tipo_pessoa}\n"
+                    f"• {'CPF' if tipo_pessoa == 'Física' else 'CNPJ'}: {cpf if tipo_pessoa == 'Física' else cnpj}\n\n"
+                    f"📌 ENDEREÇO\n"
+                    f"• CEP: {cep}\n"
+                    f"• Rua: {rua}, Nº: {numero}, Complemento: {complemento}\n"
+                    f"• Bairro: {bairro}\n"
+                    f"• Cidade: {cidade} - {estado}\n\n"
+                    f"Atenciosamente,\n"
+                    f"Site Apasi Ambiental"
+                )
             # Envia o e-mail
             send_mail(
-                subject='[Site] Novo Contato Recebido',
+                subject='[Apasi Ambiental] Novo Contato Recebido pelo Site',
                 message=corpo_email,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['ambientallix.comercial01@gmail.com'],
+                recipient_list=['ambientallix.comercial01@gmail.com', 'ambientallix.relacionamentos@gmail.com'],
                 fail_silently=False,
             )
 
@@ -51,3 +71,6 @@ def contato(request):
 
 def canais_atendimento(request):
     return render(request, 'core/canais_atendimento.html')
+
+def sobre_nos(request):
+    return render(request, 'core/sobre_nos.html')

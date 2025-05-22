@@ -1,0 +1,25 @@
+/* Fundo da navbar em verde mais escuro para contraste */
+.navbar.bg-success {
+    background-color: #146c43 !important; /* verde mais escuro */
+}
+
+/* Links da navbar */
+.navbar .nav-link {
+    color: #f1f1f1 !important;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Efeito hover para destaque */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Link ativo (opcional) */
+.navbar .nav-link.active {
+    color: #ffffff !important;
+    font-weight: 700;
+    border-bottom: 2px solid #ffffff;
+}

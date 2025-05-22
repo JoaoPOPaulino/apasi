@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Sobre Nós - Apasi Ambiental{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/sobre_nos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <header class="text-center mb-5">
+                <h1 class="display-5 fw-bold text-success mb-3">Sobre a Apasi Ambiental</h1>
+                <p class="lead text-muted">Conheça nossa história, presença e os princípios que nos movem.</p>
+            </header>
+
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-4 p-md-5">
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-success mb-4 border-bottom pb-2">Nossa História</h2>
+                        <p>
+                            Fundada em 2015, a Apasi Ambiental iniciou suas atividades oferecendo serviços de coleta, transporte e destinação final de resíduos de saúde, atendendo cerca de 5 clientes em sua fase inicial.
+                        </p>
+                        <p>
+                            Com mais de 10 anos de atuação, expandimos para 6 estados brasileiros e atendemos mais de 1.500 clientes, consolidando nossa expertise em soluções completas de gestão de resíduos.
+                        </p>
+                        <p>
+                            Nosso crescimento é resultado do compromisso com a excelência, do investimento na qualificação da equipe e da confiança construída com nossos clientes.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-success mb-4 border-bottom pb-2">Presença Nacional</h2>
+                        <p>
+                            Estamos presentes em 6 estados do Brasil, com atuação em mais de 100 cidades:
+                        </p>
+                        <ul class="list-unstyled ps-3">
+                            <li>• Tocantins <span class="text-muted">(matriz e unidade de tratamento)</span></li>
+                            <li>• Pará <span class="text-muted">(unidade de tratamento)</span></li>
+                            <li>• Ceará <span class="text-muted">(filial de acondicionamento)</span></li>
+                            <li>• Piauí</li>
+                            <li>• Maranhão</li>
+                            <li>• Bahia</li>
+                        </ul>
+                    </section>
+
+                    <section class="bg-highlight p-4 rounded text-center">
+                        <h3 class="h5 fw-bold text-success mb-2">Nossos Números</h3>
+                        <p class="mb-0">
+                            <strong>+6 Estados</strong> &nbsp;|&nbsp;
+                            <strong>+100 Cidades</strong> &nbsp;|&nbsp;
+                            <strong>+1.500 Clientes</strong>
+                        </p>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

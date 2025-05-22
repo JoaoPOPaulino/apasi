@@ -1,49 +1,90 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}Home - Apasi Ambiental{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+{% endblock %}
+
 {% block content %}
-<!-- HERO / DESTAQUE -->
-<div class="bg-success text-white p-5 rounded shadow-sm mb-4">
-    <h1 class="display-5 fw-bold">Apasi Ambiental</h1>
-    <p class="lead">Especialistas em coleta, transporte e destinação adequada de resíduos perigosos (classe 1).</p>
-    <a href="{% url 'contato' %}" class="btn btn-light btn-lg mt-3">Fale conosco</a>
-</div>
+<!-- HERO -->
+<section class="hero bg-success text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Apasi Ambiental</h1>
+        <p class="lead">Especialistas em coleta, transporte e destinação de resíduos perigosos (Classe 1).</p>
+        <a href="{% url 'contato' %}" class="btn btn-light btn-lg mt-3">Fale conosco</a>
+    </div>
+</section>
+
+<!-- SOBRE RESUMIDO -->
+<section class="sobre py-5">
+    <div class="container text-center">
+        <h2>Quem Somos</h2>
+        <p class="mb-4">Desde 2015, atuamos com soluções completas em gestão de resíduos perigosos em 6 estados brasileiros.</p>
+        <a href="{% url 'sobre_nos' %}" class="btn btn-outline-success">Saiba mais</a>
+    </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Por que escolher a Apasi?</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h5>+10 anos de experiência</h5>
+                <p>Atuação sólida e confiável no setor ambiental.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Atendimento em 6 estados</h5>
+                <p>Presença regional com logística eficiente.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Equipe técnica qualificada</h5>
+                <p>Profissionais treinados e comprometidos.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- SERVIÇOS -->
-<div class="mb-5">
-    <h2 class="mb-4 text-center">Nossos Serviços</h2>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">Coleta de Resíduos</h5>
-                    <p class="card-text">Realizamos a coleta de resíduos industriais de forma segura e regulamentada.</p>
+<section class="servicos py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Nossos Serviços</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Coleta de Resíduos</h5>
+                        <p>Coleta regulamentada de resíduos industriais e perigosos.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">Transporte de Resíduos</h5>
-                    <p class="card-text">Transporte especializado de resíduos perigosos, com frota licenciada e rastreável.</p>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Transporte de Resíduos</h5>
+                        <p>Frota licenciada e segura para transporte de resíduos Classe 1.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">Gestão Ambiental</h5>
-                    <p class="card-text">Apoio técnico com documentação, planos de gerenciamento e consultoria ambiental.</p>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestão Ambiental</h5>
+                        <p>Consultoria, PGRSS, licenciamento e suporte técnico.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- CTA -->
-<div class="text-center mt-5">
-    <h4 class="mb-3">Precisa de uma solução ambiental confiável?</h4>
-    <a href="{% url 'contato' %}" class="btn btn-success btn-lg px-4">Entre em Contato</a>
-</div>
+<!-- CTA FINAL -->
+<section class="cta text-center py-5 bg-success text-white">
+    <div class="container">
+        <h4 class="mb-3">Precisa de uma solução ambiental confiável?</h4>
+        <a href="{% url 'contato' %}" class="btn btn-light btn-lg">Entre em Contato</a>
+    </div>
+</section>
 {% endblock %}

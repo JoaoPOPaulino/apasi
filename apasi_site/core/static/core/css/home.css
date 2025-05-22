@@ -1,0 +1,49 @@
+.hero {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    color: #fff;
+}
+
+section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1b5e20;
+}
+
+.sobre p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.diferenciais h5 {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.card-title {
+    color: #1b5e20;
+    font-weight: 600;
+}
+
+.card-body p {
+    font-size: 1rem;
+}
+
+.cta h4 {
+    font-size: 1.5rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta h4 {
+        font-size: 1.2rem;
+    }
+}
