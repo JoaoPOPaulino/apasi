@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Licenças e Certificados{% endblock %}
+
+{% load static %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/licencas.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 licencas-certificados">
+    <h1 class="text-center mb-4">Licenças e Certificados</h1>
+        <p class="text-center mb-5 lead">
+            Nesta página você encontra as principais licenças e certificados que garantem a regularidade das atividades da Apasi Ambiental. Todas as autorizações estão em conformidade com as normas ambientais e de segurança vigentes.
+        </p>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">ATCPS</h5>
+                    <p class="card-text">Autorização para o Transporte de Cargas Perigosas e Substâncias controladas, emitida por órgão competente, permitindo o transporte em conformidade com a legislação ambiental.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Licença de Operação</h5>
+                    <p class="card-text">Documento emitido por órgãos ambientais que autoriza a operação da empresa após análise de impacto ambiental e cumprimento de todas as exigências legais.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">IBAMA</h5>
+                    <p class="card-text">Registro junto ao Instituto Brasileiro do Meio Ambiente, necessário para atuar em atividades que envolvem recursos ambientais ou resíduos perigosos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">AATIPP</h5>
+                    <p class="card-text">Autorização Ambiental de Transporte Interestadual de Produtos Perigosos, necessária para atividades de transporte entre estados de materiais classificados como perigosos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Certificado do Corpo de Bombeiros</h5>
+                    <p class="card-text">Certificação de que a empresa cumpre as normas de segurança contra incêndios e possui um plano de emergência aprovado pelo Corpo de Bombeiros.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">PGRSS</h5>
+                    <p class="card-text">Plano de Gerenciamento de Resíduos de Serviços de Saúde. Documento que estabelece as diretrizes para o manejo correto dos resíduos gerados, garantindo segurança e sustentabilidade.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Licença Sanitária</h5>
+                    <p class="card-text">Documento emitido pela Vigilância Sanitária que autoriza o funcionamento da empresa, comprovando o cumprimento das normas de higiene, saúde e controle sanitário.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">CDF – Certificado de Destinação Final</h5>
+                    <p class="card-text">Documento que comprova a destinação ambientalmente adequada dos resíduos coletados, emitido por unidades de tratamento ou disposição final autorizadas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4 mx-auto">
+            <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Entre outras...</h5>
+                    <p class="card-text">Além das licenças acima, a Apasi Ambiental mantém todas as demais certificações exigidas por lei para garantir a conformidade de suas operações ambientais e a segurança de seus processos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

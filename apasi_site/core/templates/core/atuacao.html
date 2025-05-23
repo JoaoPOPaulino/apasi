@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Áreas de Atuação{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/atuacao.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Áreas de Atuação</h1>
+    <p class="text-center mb-4 lead">A Apasi Ambiental atende empresas em diversas cidades do estado, oferecendo soluções ambientais com qualidade e responsabilidade.</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Cidades Atendidas:</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Araguaína</li>
+                <li class="list-group-item">Palmas</li>
+                <li class="list-group-item">Barreira</li>
+                <li class="list-group-item">Marabá</li>
+                <li class="list-group-item">Paraíso do Tocantins</li>
+                <li class="list-group-item">Imperatriz</li>
+                <li class="list-group-item">Balsas</li>
+                <!-- Adicione outras cidades aqui -->
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Mapa de Cobertura:</h4>
+            <div class="ratio ratio-4x3 rounded shadow-sm">
+                <iframe src="https://www.google.com/maps/d/embed?mid=10Sjy-s0UiAqTgmLyaHRhUzRTEoUP0dQ&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

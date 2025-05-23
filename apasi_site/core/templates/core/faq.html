@@ -1,0 +1,86 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Perguntas Frequentes (FAQ){% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 faq-page">
+    <h1 class="text-center mb-4">Perguntas Frequentes</h1>
+    <p class="text-center mb-5">Aqui você encontra respostas para as dúvidas mais comuns sobre nossos serviços e atuação.</p>
+
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                    A Apasi Ambiental atende empresas de quais setores?
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Atendemos empresas dos setores hospitalar, industrial, comercial, laboratorial e de logística, entre outros.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                    Vocês possuem todas as licenças necessárias para atuar?
+                </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Sim. Possuímos todas as licenças e certificações exigidas pelos órgãos ambientais e de segurança.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                    Como posso contratar os serviços da Apasi Ambiental?
+                </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Você pode entrar em contato pelo nosso 
+                    <a href="{% url 'contato' %}" class="text-success fw-semibold text-decoration-none">formulário</a> 
+                    ou pelos 
+                    <a href="{% url 'canais_atendimento' %}" class="text-success fw-semibold text-decoration-none">canais de atendimento</a>. 
+                    Nossa equipe retornará com todas as informações.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                    Quais os tipos de resíduos que vocês coletam?
+                </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Coletamos resíduos classificados como Classe I – perigosos, conforme a NBR 10.004. 
+                    Isso inclui materiais com propriedades inflamáveis, tóxicas, reativas, corrosivas ou patogênicas, como:
+                    <ul class="mt-2">
+                        <li>Resíduos hospitalares e de serviços de saúde</li>
+                        <li>Produtos químicos vencidos ou contaminados</li>
+                        <li>Óleos, graxas e solventes industriais</li>
+                        <li>Embalagens contaminadas</li>
+                        <li>Efluentes contaminadas</li>
+                        <li>Entre outros</li>
+                    </ul>
+                    Todo o processo de coleta, transporte e destinação é feito conforme a legislação ambiental vigente, com total segurança e responsabilidade.
+                </div>
+            </div>
+        </div>
+
+        <!-- Adicione mais perguntas aqui se quiser -->
+    </div>
+</div>
+{% endblock %}

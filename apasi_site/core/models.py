@@ -45,3 +45,20 @@ class Contato(models.Model):
 
     def __str__(self):
         return f"{self.nome} ({self.email})"
+    
+
+    class Cidade(models.Model):
+        nome = models.CharField(max_length=100)
+        estado = models.CharField(max_length=50, choices=[
+            ('TO', 'Tocantins'),
+            ('PA', 'Pará'),
+            ('MA', 'Maranhão'),
+            ('CE', 'Ceará'),
+            ('PI', 'Piauí'),
+            ('BA', 'Bahia'),
+        ])
+        latitude = models.FloatField()
+        longitude = models.FloatField()
+
+    def __str__(self):
+        return f"{self.nome} - {self.estado}"

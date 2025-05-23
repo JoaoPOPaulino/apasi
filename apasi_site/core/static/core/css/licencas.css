@@ -1,0 +1,25 @@
+.licencas-certificados h1 {
+    color: #155724;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.licencas-certificados .card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.licencas-certificados .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.licencas-certificados .card-title {
+    color: #0b2e13;
+    font-weight: 600;
+}
+
+.licencas-certificados .card-text {
+    font-size: 0.95rem;
+    color: #333;
+}

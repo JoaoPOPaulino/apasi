@@ -74,3 +74,12 @@ def canais_atendimento(request):
 
 def sobre_nos(request):
     return render(request, 'core/sobre_nos.html')
+
+def licencas(request):
+    return render(request, 'core/licencas.html')
+
+def faq(request):
+    return render(request, 'core/faq.html')
+
+def atuacao(request):
+    return render(request, 'core/atuacao.html')
