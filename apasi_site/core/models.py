@@ -49,16 +49,21 @@ class Contato(models.Model):
 
     class Cidade(models.Model):
         nome = models.CharField(max_length=100)
-        estado = models.CharField(max_length=50, choices=[
-            ('TO', 'Tocantins'),
-            ('PA', 'Pará'),
-            ('MA', 'Maranhão'),
-            ('CE', 'Ceará'),
-            ('PI', 'Piauí'),
-            ('BA', 'Bahia'),
-        ])
-        latitude = models.FloatField()
-        longitude = models.FloatField()
+        estado = models.ForeignKey('Estado', on_delete=models.CASCADE, related_name='cidades')
 
-    def __str__(self):
-        return f"{self.nome} - {self.estado}"
+        class Meta:
+            ordering = ['nome']
+            unique_together = ['nome', 'estado']
+
+        def __str__(self):
+            return f"{self.nome} - {self.estado.sigla}"
+    
+    class Estado(models.Model):
+        nome = models.CharField(max_length=50)
+        sigla = models.CharField(max_length=2, unique=True)
+
+        class Meta:
+            ordering = ['nome']
+
+        def __str__(self):
+            return self.nome

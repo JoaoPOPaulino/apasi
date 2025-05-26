@@ -5,6 +5,44 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'core/css/atuacao.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+    #map {
+        height: 100%;
+        width: 100%;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    }
+    .search-container {
+        margin-bottom: 1rem;
+    }
+    .list-group-item {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+    .legend {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-radius: 0.25rem;
+    }
+    .legend span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin-right: 0.5rem;
+    }
+    .legend .sede {
+        background-color: red;
+    }
+    .legend .cidade {
+        background-color: #3388ff;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -12,27 +50,136 @@
     <h1 class="text-center mb-4">Áreas de Atuação</h1>
     <p class="text-center mb-4 lead">A Apasi Ambiental atende empresas em diversas cidades do estado, oferecendo soluções ambientais com qualidade e responsabilidade.</p>
 
+    <div class="row mb-4">
+        <div class="col-md-6 search-container">
+            <label for="stateFilter" class="form-label">Filtrar por Estado:</label>
+            <select id="stateFilter" class="form-select">
+                <option value="all">Todos os Estados</option>
+                <option value="TO">Tocantins</option>
+                <option value="BA">Bahia</option>
+                <option value="MA">Maranhão</option>
+                <option value="PA">Pará</option>
+                <option value="PI">Piauí</option>
+                <option value="CE">Ceará</option>
+            </select>
+        </div>
+        <div class="col-md-6 search-container">
+            <label for="citySearch" class="form-label">Buscar Cidade:</label>
+            <input type="text" id="citySearch" class="form-control" placeholder="Digite o nome da cidade">
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <h4>Cidades Atendidas:</h4>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Araguaína</li>
-                <li class="list-group-item">Palmas</li>
-                <li class="list-group-item">Barreira</li>
-                <li class="list-group-item">Marabá</li>
-                <li class="list-group-item">Paraíso do Tocantins</li>
-                <li class="list-group-item">Imperatriz</li>
-                <li class="list-group-item">Balsas</li>
-                <!-- Adicione outras cidades aqui -->
-            </ul>
+            <ul class="list-group list-group-flush" id="cityList"></ul>
+            <div class="legend">
+                <p><span class="sede"></span> Sede/Escritório</p>
+                <p><span class="cidade"></span> Cidade Atendida</p>
+            </div>
         </div>
 
         <div class="col-md-6">
             <h4>Mapa de Cobertura:</h4>
             <div class="ratio ratio-4x3 rounded shadow-sm">
-                <iframe src="https://www.google.com/maps/d/embed?mid=10Sjy-s0UiAqTgmLyaHRhUzRTEoUP0dQ&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+                <div id="map"></div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+// Ícone personalizado para sedes
+const sedeIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+let map;
+let markers = [];
+
+function initMap() {
+    map = L.map('map').setView([-7.1927, -48.2048], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    fetchCities();
+}
+
+function fetchCities() {
+    fetch('/api/cities/')
+        .then(response => response.json())
+        .then(cities => {
+            window.cities = cities; // Armazenar globalmente para uso nos filtros
+            updateMapAndList("all");
+
+            // Popular o dropdown de estados dinamicamente
+            const stateFilter = document.getElementById("stateFilter");
+            const states = [...new Set(cities.map(city => city.state))];
+            states.forEach(state => {
+                if (!stateFilter.querySelector(`option[value="${state}"]`)) {
+                    const option = document.createElement("option");
+                    option.value = state;
+                    option.textContent = state;
+                    stateFilter.appendChild(option);
+                }
+            });
+
+            // Eventos
+            stateFilter.addEventListener("change", () => updateMapAndList(stateFilter.value));
+            document.getElementById("citySearch").addEventListener("input", function() {
+                updateMapAndList(stateFilter.value, this.value.toLowerCase());
+            });
+            document.getElementById("cityList").addEventListener("click", function(e) {
+                if (e.target.classList.contains("list-group-item")) {
+                    const lat = parseFloat(e.target.dataset.lat);
+                    const lng = parseFloat(e.target.dataset.lng);
+                    map.setView([lat, lng], 10);
+                }
+            });
+        })
+        .catch(error => console.error('Erro ao carregar cidades:', error));
+}
+
+function updateMapAndList(state, query = "") {
+    markers.forEach(marker => marker.remove());
+    markers = [];
+
+    const filteredCities = window.cities.filter(city => 
+        (state === "all" || city.state === city.state) &&
+        (query === "" || city.name.toLowerCase().includes(query))
+    );
+
+    const cityList = document.getElementById("cityList");
+    cityList.innerHTML = "";
+    filteredCities.forEach(city => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.dataset.city = city.name;
+        li.dataset.state = city.state;
+        li.dataset.lat = city.lat;
+        li.dataset.lng = city.lng;
+        li.textContent = city.name + (city.is_sede ? " (Sede)" : "");
+        cityList.appendChild(li);
+
+        const marker = L.marker([city.lat, city.lng], {
+            icon: city.is_sede ? sedeIcon : null
+        }).addTo(map).bindPopup(city.name + (city.is_sede ? " (Sede)" : ""));
+        markers.push(marker);
+    });
+
+    if (filteredCities.length > 0) {
+        const bounds = L.latLngBounds(filteredCities.map(city => [city.lat, city.lng]));
+        map.fitBounds(bounds);
+    }
+}
+
+initMap();
+</script>
 {% endblock %}

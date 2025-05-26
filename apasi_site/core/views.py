@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from .forms import ContatoForm
 from django.conf import settings
 from django.core.mail import send_mail
+from .models import Estado, Cidade
 
 
 def home(request):
@@ -81,5 +82,6 @@ def licencas(request):
 def faq(request):
     return render(request, 'core/faq.html')
 
-def atuacao(request):
-    return render(request, 'core/atuacao.html')
+def areas_atuacao(request):
+    estados = Estado.objects.all()  # Já ordenado alfabeticamente pelo modelo
+    return render(request, 'core/atuacao.html', {'estados': estados})
