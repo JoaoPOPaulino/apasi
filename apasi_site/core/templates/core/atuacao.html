@@ -6,43 +6,6 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'core/css/atuacao.css' %}">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<style>
-    #map {
-        height: 100%;
-        width: 100%;
-        border-radius: 0.25rem;
-        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-    }
-    .search-container {
-        margin-bottom: 1rem;
-    }
-    .list-group-item {
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-    .list-group-item:hover {
-        background-color: #f8f9fa;
-    }
-    .legend {
-        margin-top: 1rem;
-        padding: 0.5rem;
-        background-color: #f8f9fa;
-        border-radius: 0.25rem;
-    }
-    .legend span {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        vertical-align: middle;
-        margin-right: 0.5rem;
-    }
-    .legend .sede {
-        background-color: red;
-    }
-    .legend .cidade {
-        background-color: #3388ff;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
@@ -55,12 +18,9 @@
             <label for="stateFilter" class="form-label">Filtrar por Estado:</label>
             <select id="stateFilter" class="form-select">
                 <option value="all">Todos os Estados</option>
-                <option value="TO">Tocantins</option>
-                <option value="BA">Bahia</option>
-                <option value="MA">Maranhão</option>
-                <option value="PA">Pará</option>
-                <option value="PI">Piauí</option>
-                <option value="CE">Ceará</option>
+                {% for estado in estados %}
+                    <option value="{{ estado.sigla }}">{{ estado.nome }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="col-md-6 search-container">
@@ -73,16 +33,31 @@
         <div class="col-md-6">
             <h4>Cidades Atendidas:</h4>
             <ul class="list-group list-group-flush" id="cityList"></ul>
-            <div class="legend">
-                <p><span class="sede"></span> Sede/Escritório</p>
-                <p><span class="cidade"></span> Cidade Atendida</p>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    <label for="pageSize" class="form-label me-2">Mostrar:</label>
+                    <select id="pageSize" class="form-select d-inline-block w-auto">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <span class="ms-1">por página</span>
+                </div>
+                <div id="paginationControls" class="btn-group"></div>
+            </div>
+
+            <div class="legend mt-3">
+                <p><span class="sede me-2"></span> Sede/Escritório</p>
+                <p><span class="cidade me-2"></span> Cidade Atendida</p>
             </div>
         </div>
 
         <div class="col-md-6">
             <h4>Mapa de Cobertura:</h4>
             <div class="ratio ratio-4x3 rounded shadow-sm">
-                <div id="map"></div>
+                <div id="map" style="width: 100%; height: 100%;"></div>
             </div>
         </div>
     </div>
@@ -90,7 +65,6 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-// Ícone personalizado para sedes
 const sedeIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
@@ -102,82 +76,152 @@ const sedeIcon = L.icon({
 
 let map;
 let markers = [];
+let allCities = [];
+let filteredCities = [];
+let currentPage = 1;
+let pageSize = 10;
 
 function initMap() {
-    map = L.map('map').setView([-7.1927, -48.2048], 6);
+    map = L.map('map').setView([-10.2128, -48.3603], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    fetchCities();
-}
-
-function fetchCities() {
     fetch('/api/cities/')
         .then(response => response.json())
         .then(cities => {
-            window.cities = cities; // Armazenar globalmente para uso nos filtros
-            updateMapAndList("all");
-
-            // Popular o dropdown de estados dinamicamente
-            const stateFilter = document.getElementById("stateFilter");
-            const states = [...new Set(cities.map(city => city.state))];
-            states.forEach(state => {
-                if (!stateFilter.querySelector(`option[value="${state}"]`)) {
-                    const option = document.createElement("option");
-                    option.value = state;
-                    option.textContent = state;
-                    stateFilter.appendChild(option);
-                }
-            });
-
-            // Eventos
-            stateFilter.addEventListener("change", () => updateMapAndList(stateFilter.value));
-            document.getElementById("citySearch").addEventListener("input", function() {
-                updateMapAndList(stateFilter.value, this.value.toLowerCase());
-            });
-            document.getElementById("cityList").addEventListener("click", function(e) {
-                if (e.target.classList.contains("list-group-item")) {
-                    const lat = parseFloat(e.target.dataset.lat);
-                    const lng = parseFloat(e.target.dataset.lng);
-                    map.setView([lat, lng], 10);
-                }
-            });
+            allCities = cities;
+            filteredCities = allCities;
+            loadAllMarkers();
+            updateMapAndList();
         })
         .catch(error => console.error('Erro ao carregar cidades:', error));
+
+    document.getElementById("stateFilter").addEventListener("change", handleFilter);
+    document.getElementById("citySearch").addEventListener("input", debounce(handleFilter, 300));
+    document.getElementById("pageSize").addEventListener("change", () => {
+        pageSize = parseInt(document.getElementById("pageSize").value);
+        currentPage = 1;
+        updateMapAndList();
+    });
+
+    document.getElementById("cityList").addEventListener("click", function(e) {
+        if (e.target.classList.contains("list-group-item")) {
+            const lat = parseFloat(e.target.dataset.lat);
+            const lng = parseFloat(e.target.dataset.lng);
+            map.setView([lat, lng], 10);
+        }
+    });
 }
 
-function updateMapAndList(state, query = "") {
+function loadAllMarkers() {
+    allCities.forEach(city => {
+        if (city.lat && city.lng) {
+            const marker = city.is_sede
+                ? L.marker([city.lat, city.lng], { icon: sedeIcon })
+                : L.marker([city.lat, city.lng]);
+            marker.addTo(map).bindPopup(`${city.nome} - ${city.state}` + (city.is_sede ? " (Sede)" : ""));
+            markers.push(marker);
+        }
+    });
+
+    const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+    if (bounds.isValid()) map.fitBounds(bounds);
+}
+
+function handleFilter() {
+    const state = document.getElementById("stateFilter").value;
+    const query = document.getElementById("citySearch").value.toLowerCase();
+
+    filteredCities = allCities.filter(city =>
+        (state === "all" || city.state === state) &&
+        (query === "" || city.nome.toLowerCase().includes(query))
+    );
+
+    currentPage = 1;
+    updateMapAndList();
+}
+
+function updateMapAndList() {
     markers.forEach(marker => marker.remove());
     markers = [];
 
-    const filteredCities = window.cities.filter(city => 
-        (state === "all" || city.state === city.state) &&
-        (query === "" || city.name.toLowerCase().includes(query))
-    );
-
     const cityList = document.getElementById("cityList");
     cityList.innerHTML = "";
-    filteredCities.forEach(city => {
+
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    const pageCities = filteredCities.slice(start, end);
+
+    pageCities.forEach(city => {
         const li = document.createElement("li");
         li.className = "list-group-item";
-        li.dataset.city = city.name;
+        li.dataset.city = city.nome;
         li.dataset.state = city.state;
         li.dataset.lat = city.lat;
         li.dataset.lng = city.lng;
-        li.textContent = city.name + (city.is_sede ? " (Sede)" : "");
+        li.textContent = `${city.nome} - ${city.state}` + (city.is_sede ? " (Sede)" : "");
         cityList.appendChild(li);
 
-        const marker = L.marker([city.lat, city.lng], {
-            icon: city.is_sede ? sedeIcon : null
-        }).addTo(map).bindPopup(city.name + (city.is_sede ? " (Sede)" : ""));
-        markers.push(marker);
+        if (city.lat && city.lng) {
+            const marker = city.is_sede
+                ? L.marker([city.lat, city.lng], { icon: sedeIcon })
+                : L.marker([city.lat, city.lng]);
+            marker.addTo(map).bindPopup(`${city.nome} - ${city.state}` + (city.is_sede ? " (Sede)" : ""));
+            markers.push(marker);
+        }
     });
 
-    if (filteredCities.length > 0) {
-        const bounds = L.latLngBounds(filteredCities.map(city => [city.lat, city.lng]));
-        map.fitBounds(bounds);
-    }
+    updatePaginationControls();
+    updateMapBounds(pageCities);
+}
+
+function updatePaginationControls() {
+    const controls = document.getElementById("paginationControls");
+    controls.innerHTML = "";
+
+    const totalPages = Math.ceil(filteredCities.length / pageSize);
+
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "btn btn-outline-secondary";
+    prevBtn.textContent = "Anterior";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.onclick = () => {
+        currentPage--;
+        updateMapAndList();
+    };
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "btn btn-outline-secondary";
+    nextBtn.textContent = "Próxima";
+    nextBtn.disabled = currentPage >= totalPages;
+    nextBtn.onclick = () => {
+        currentPage++;
+        updateMapAndList();
+    };
+
+    const label = document.createElement("span");
+    label.className = "mx-2 align-self-center text-secondary";
+    label.textContent = `Página ${currentPage} de ${totalPages}`;
+
+    controls.appendChild(prevBtn);
+    controls.appendChild(label);
+    controls.appendChild(nextBtn);
+}
+
+function updateMapBounds(cities) {
+    const bounds = L.latLngBounds(
+        cities.filter(city => city.lat && city.lng).map(city => [city.lat, city.lng])
+    );
+    if (bounds.isValid()) map.fitBounds(bounds);
+}
+
+function debounce(fn, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
 }
 
 initMap();

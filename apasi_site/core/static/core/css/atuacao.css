@@ -1,6 +1,46 @@
 ul.list-group li {
     font-size: 1.1rem;
 }
-.ratio iframe {
-    border: none;
+
+.search-container {
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.legend {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+}
+
+.legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.legend .sede {
+    background-color: red;
+}
+
+.legend .cidade {
+    background-color: #3388ff;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
 }

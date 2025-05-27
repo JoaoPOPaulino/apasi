@@ -5,6 +5,9 @@ from .forms import ContatoForm
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import Estado, Cidade
+from .serializers import CidadeSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 def home(request):
@@ -82,6 +85,12 @@ def licencas(request):
 def faq(request):
     return render(request, 'core/faq.html')
 
-def areas_atuacao(request):
-    estados = Estado.objects.all()  # Já ordenado alfabeticamente pelo modelo
+def atuacao(request):
+    estados = Estado.objects.all().order_by('nome')
     return render(request, 'core/atuacao.html', {'estados': estados})
+
+@api_view(['GET'])
+def city_list(request):
+    cidades = Cidade.objects.all()
+    serializer = CidadeSerializer(cidades, many=True)
+    return Response(serializer.data)
