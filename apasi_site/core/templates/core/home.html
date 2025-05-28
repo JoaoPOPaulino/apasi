@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+
 <!-- HERO -->
 <section class="hero bg-success text-white text-center py-5">
     <div class="container">
@@ -36,8 +37,8 @@
                 <p>Atuação sólida e confiável no setor ambiental.</p>
             </div>
             <div class="col-md-4">
-                <h5>Atendimento em 6 estados</h5>
-                <p>Presença regional com logística eficiente.</p>
+                <h5>Atendimento personalizado</h5>
+                <p>Soluções sob medida para diferentes segmentos e necessidades.</p>
             </div>
             <div class="col-md-4">
                 <h5>Equipe técnica qualificada</h5>
@@ -47,8 +48,18 @@
     </div>
 </section>
 
+<!-- ÁREAS DE ATUAÇÃO -->
+<section class="atuacao text-center py-5">
+    <div class="container">
+        <h2 class="mb-4">Onde Atuamos</h2>
+        <p class="mb-3">Prestamos serviços especializados em gestão de resíduos perigosos nos estados de:</p>
+        <p><strong>Tocantins, Pará, Maranhão, Ceará, Bahia e Piauí</strong>.</p>
+        <a href="{% url 'atuacao' %}" class="btn btn-success mt-3">Ver Mapa de Atuação</a>
+    </div>
+</section>
+
 <!-- SERVIÇOS -->
-<section class="servicos py-5">
+<section class="servicos py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Nossos Serviços</h2>
         <div class="row g-4">
@@ -87,4 +98,5 @@
         <a href="{% url 'contato' %}" class="btn btn-light btn-lg">Entre em Contato</a>
     </div>
 </section>
+
 {% endblock %}
