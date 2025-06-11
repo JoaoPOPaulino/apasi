@@ -1,36 +1,44 @@
+/* Hero section com gradiente azul */
 .hero {
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    background: linear-gradient(135deg, #4169E1, #27408B); /* Azul royal para azul escuro */
     color: #fff;
 }
 
+/* Títulos das seções */
 section h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: #1b5e20;
+    color: #27408B; /* Azul escuro para contraste com fundos claros */
 }
 
+/* Sobre */
 .sobre p {
     max-width: 700px;
     margin: 0 auto;
     font-size: 1.1rem;
+    color: #333333; /* Cinza escuro para legibilidade */
 }
 
+/* Diferenciais */
 .diferenciais h5 {
-    color: #2e7d32;
+    color: #4169E1; /* Azul royal para consistência */
     font-weight: 600;
 }
 
+/* Cards */
 .card-title {
-    color: #1b5e20;
+    color: #27408B; /* Azul escuro */
     font-weight: 600;
 }
 
 .card-body p {
     font-size: 1rem;
+    color: #333333; /* Cinza escuro para texto */
 }
 
+/* Call to Action */
 .cta {
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    background: linear-gradient(135deg, #4169E1, #27408B); /* Gradiente azul */
     color: white;
     margin-bottom: 40px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -54,16 +62,19 @@ section h2 {
         font-size: 1.2rem;
     }
 }
+
+/* Atuação */
 .atuacao {
-    background-color: #f5f5f5;
+    background-color: #F0F4F8; /* Cinza azulado claro para fundo */
 }
 
 .atuacao h2 {
-    color: #1b5e20;
+    color: #27408B; /* Azul escuro */
     font-size: 2rem;
     font-weight: 700;
 }
 
 .atuacao p {
     font-size: 1.1rem;
+    color: #333333; /* Cinza escuro para texto */
 }

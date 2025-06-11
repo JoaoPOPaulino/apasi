@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #28a745;
-    --primary-hover: #218838;
-    --text-muted: #6c757d;
+    --primary-color: #4169E1; /* Azul royal */
+    --primary-hover: #27408B; /* Azul escuro para hover */
+    --text-muted: #6c757d; /* Mantido cinza neutro para textos secundários */
     --border-radius: 12px;
     --transition: all 0.3s ease;
 }
@@ -20,6 +20,7 @@ header.text-center.mb-5 {
     font-family: 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
+    color: #27408B; /* Azul escuro para título */
 }
 
 .lead {
@@ -30,13 +31,14 @@ header.text-center.mb-5 {
 /* Card */
 .card.shadow-lg {
     border-radius: var(--border-radius);
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #F0F4F8 100%); /* Gradiente com cinza azulado */
 }
 
 /* Seções */
 .h4.text-success {
     font-weight: 600;
     position: relative;
+    color: var(--primary-color); /* Azul royal */
 }
 
 .h4.text-success::after {
@@ -46,7 +48,7 @@ header.text-center.mb-5 {
     left: 0;
     width: 60px;
     height: 3px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Linha azul royal */
 }
 
 /* Tabela */
@@ -55,17 +57,18 @@ header.text-center.mb-5 {
 }
 
 .table th {
-    background-color: #f8f9fa;
+    background-color: #F0F4F8; /* Cinza azulado claro, consistente com outros fundos */
     color: var(--text-muted);
     font-weight: 600;
 }
 
 .table td {
     vertical-align: middle;
+    color: #333333; /* Cinza escuro para legibilidade */
 }
 
 .table a.text-success:hover {
-    color: var(--primary-hover);
+    color: var(--primary-hover); /* Azul escuro no hover */
     text-decoration: underline;
 }
 

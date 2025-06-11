@@ -1,11 +1,10 @@
-/* Fundo da navbar em verde mais escuro para contraste */
 .navbar.bg-success {
-    background-color: #146c43 !important; /* verde mais escuro */
+    background-color: #4169E1 !important; /* Azul royal */
 }
 
 /* Links da navbar */
 .navbar .nav-link {
-    color: #f1f1f1 !important;
+    color: #f1f1f1 !important; /* Mantido branco para contraste */
     font-weight: 600;
     transition: color 0.3s ease, text-decoration 0.3s ease;
 }
@@ -13,13 +12,13 @@
 /* Efeito hover para destaque */
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-    color: #ffffff !important;
+    color: #FFD700 !important; /* Amarelo dourado suave para hover */
     text-decoration: underline;
 }
 
-/* Link ativo (opcional) */
+/* Link ativo */
 .navbar .nav-link.active {
     color: #ffffff !important;
     font-weight: 700;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #FFD700; /* Amarelo dourado para ativo */
 }

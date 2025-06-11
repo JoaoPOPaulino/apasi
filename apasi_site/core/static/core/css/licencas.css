@@ -1,5 +1,5 @@
 .licencas-certificados h1 {
-    color: #155724;
+    color: #27408B;
     font-weight: bold;
     margin-bottom: 2rem;
 }
@@ -7,19 +7,20 @@
 .licencas-certificados .card {
     border-radius: 12px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #D1E0F5;
 }
 
 .licencas-certificados .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(65, 105, 225, 0.2);
 }
 
 .licencas-certificados .card-title {
-    color: #0b2e13;
+    color: #4169E1;
     font-weight: 600;
 }
 
 .licencas-certificados .card-text {
     font-size: 0.95rem;
-    color: #333;
+    color: #333333;
 }

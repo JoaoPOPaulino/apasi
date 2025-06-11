@@ -1,20 +1,21 @@
 .faq-page h1 {
-    color: #155724;
+    color: #27408B;
     font-weight: bold;
 }
 
 .accordion-button {
-    background-color: #e9f7ef;
-    color: #155724;
+    background-color: #E6F0FA;
+    color: #4169E1;
     font-weight: 500;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #d4edda;
-    color: #0b3e1b;
+    background-color: #D1E0F5;
+    color: #27408B;
 }
 
 .accordion-body {
-    background-color: #f8f9fa;
+    background-color: #F0F4F8;
     font-size: 1rem;
+    color: #333333;
 }

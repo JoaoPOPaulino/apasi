@@ -1,5 +1,6 @@
 ul.list-group li {
     font-size: 1.1rem;
+    color: #333333; /* Cinza escuro para legibilidade */
 }
 
 .search-container {
@@ -9,16 +10,17 @@ ul.list-group li {
 .list-group-item {
     cursor: pointer;
     transition: background-color 0.2s;
+    background-color: #ffffff; /* Fundo branco por padrão para contraste */
 }
 
 .list-group-item:hover {
-    background-color: #f8f9fa;
+    background-color: #F0F4F8; /* Cinza azulado claro no hover, consistente com outros fundos */
 }
 
 .legend {
     margin-top: 1rem;
     padding: 0.5rem;
-    background-color: #f8f9fa;
+    background-color: #F0F4F8; /* Cinza azulado claro, alinhado com outros fundos */
     border-radius: 0.25rem;
 }
 
@@ -31,16 +33,16 @@ ul.list-group li {
 }
 
 .legend .sede {
-    background-color: red;
+    background-color: #dc3545; /* Vermelho mantido para destaque, mas com tom padrão Bootstrap */
 }
 
 .legend .cidade {
-    background-color: #3388ff;
+    background-color: #4169E1; /* Azul royal para consistência com a cor principal */
 }
 
 #map {
     height: 100%;
     width: 100%;
     border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    box-shadow: 0 0.125rem 0.25rem rgba(65, 105, 225, 0.2); /* Sombra com tom azul royal */
 }
