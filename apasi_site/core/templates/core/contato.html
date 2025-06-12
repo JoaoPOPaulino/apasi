@@ -12,14 +12,14 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <header class="text-center mb-5">
-                <h1 class="display-5 fw-bold text-success mb-3">Fale Conosco</h1>
+                <h1 class="display-5 fw-bold text-primary mb-3">Fale Conosco</h1>
                 <p class="lead text-muted">Preencha o formulário abaixo e nossa equipe entrará em contato em breve.</p>
-                <p class="lead text-muted">Caso queria entrar em contato atravez do WhatsApp ou E-mail:</p>
+                <p class="lead text-muted">Caso queira entrar em contato através do WhatsApp ou E-mail:</p>
                 <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-                    <a href="tel:+5563999282888" class="btn btn-outline-success d-flex align-items-center">
-                        <i class="bi bi-telephone-fill me-2"></i>(63) 99928-2888
+                    <a href="tel:+5563999282888" class="btn btn-outline-primary d-flex align-items-center">
+                        <i class="bi bi-telephone-fill me-2"></i>+55 (63) 99928-2888
                     </a>
-                    <a href="mailto:apasisolicitacoes@gmail.com" class="btn btn-outline-success d-flex align-items-center">
+                    <a href="mailto:ambientallix.comercial01@gmail.com" class="btn btn-outline-primary d-flex align-items-center">
                         <i class="bi bi-envelope-fill me-2"></i>ambientallix.comercial01@gmail.com
                     </a>
                 </div>
@@ -33,7 +33,7 @@
 
                         <!-- Informações Pessoais -->
                         <section class="mb-4">
-                            <h3 class="h4 text-success mb-3 border-bottom pb-2">
+                            <h3 class="h4 text-primary mb-3 border-bottom pb-2">
                                 <i class="bi bi-person-circle me-2"></i>Informações Pessoais
                             </h3>
                             <div class="row g-3">
@@ -69,7 +69,7 @@
 
                         <!-- Identificação -->
                         <section class="mb-4">
-                            <h3 class="h4 text-success mb-3 border-bottom pb-2">
+                            <h3 class="h4 text-primary mb-3 border-bottom pb-2">
                                 <i class="bi bi-card-checklist me-2"></i>Identificação
                             </h3>
                             <div class="row g-3">
@@ -105,7 +105,7 @@
 
                         <!-- Endereço -->
                         <section class="mb-4">
-                            <h3 class="h4 text-success mb-3 border-bottom pb-2">
+                            <h3 class="h4 text-primary mb-3 border-bottom pb-2">
                                 <i class="bi bi-geo-alt-fill me-2"></i>Endereço para Coleta
                             </h3>
                             <div class="row g-3">
@@ -179,7 +179,7 @@
                         <div class="form-check mb-4">
                             {{ form.aceita_politica }}
                             <label class="form-check-label" for="{{ form.aceita_politica.id_for_label }}">
-                                Li e aceito a <a href="#" data-bs-toggle="modal" data-bs-target="#politicaModal">política de privacidade</a> *
+                                Li e aceito a <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#politicaModal">política de privacidade</a> *
                             </label>
                             {% if form.aceita_politica.errors %}
                                 <div class="invalid-feedback d-block">{{ form.aceita_politica.errors|join:", " }}</div>
@@ -188,7 +188,7 @@
 
                         <!-- Botão -->
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg py-3" aria-label="Enviar formulário de contato">
+                            <button type="submit" class="btn btn-primary btn-lg py-3" aria-label="Enviar formulário de contato">
                                 <i class="bi bi-send-fill me-2"></i>Enviar Mensagem
                             </button>
                         </div>
@@ -203,7 +203,7 @@
 <div class="modal fade" id="politicaModal" tabindex="-1" aria-labelledby="politicaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="politicaModalLabel">Política de Privacidade</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
@@ -249,12 +249,11 @@
                 <p>Para exercer seus direitos, entre em contato conosco por meio dos canais disponíveis no site.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Entendi</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

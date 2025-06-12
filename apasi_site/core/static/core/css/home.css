@@ -48,21 +48,6 @@ section h2 {
     font-size: 1.5rem;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    section h2 {
-        font-size: 1.5rem;
-    }
-
-    .cta h4 {
-        font-size: 1.2rem;
-    }
-}
-
 /* Atuação */
 .atuacao {
     background-color: #F0F4F8; /* Cinza azulado claro para fundo */
@@ -77,4 +62,77 @@ section h2 {
 .atuacao p {
     font-size: 1.1rem;
     color: #333333; /* Cinza escuro para texto */
+}
+
+/* Estilizar botões primários */
+.btn-primary {
+    background-color: #4169E1; /* Azul royal */
+    border-color: #4169E1;
+    color: #ffffff;
+    border-radius: 8px; /* Bordas arredondadas suaves */
+    padding: 10px 20px; /* Padding ajustado para retângulo */
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #27408B; /* Azul escuro para hover */
+    border-color: #27408B;
+    color: #ffffff;
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+.btn-primary:active {
+    transform: translateY(0); /* Volta ao normal quando clicado */
+}
+
+.btn-outline-primary {
+    border-color: #4169E1;
+    color: #4169E1;
+    border-radius: 8px; /* Bordas arredondadas suaves */
+    padding: 10px 20px; /* Padding ajustado para retângulo */
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4169E1;
+    color: #ffffff;
+    border-color: #4169E1;
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+.btn-outline-primary:active {
+    transform: translateY(0); /* Volta ao normal quando clicado */
+}
+
+/* Links gerais no main */
+main a:not(.btn) {
+    color: #4169E1;
+    transition: color 0.3s ease;
+}
+
+main a:not(.btn):hover {
+    color: #27408B;
+    text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta h4 {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary, .btn-outline-primary {
+        padding: 8px 16px; /* Padding menor em telas pequenas */
+        font-size: 0.9rem;
+    }
 }

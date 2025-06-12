@@ -1,8 +1,8 @@
 :root {
     --primary-color: #4169E1; /* Azul royal */
     --primary-hover: #27408B; /* Azul escuro para hover */
-    --text-muted: #6c757d; /* Mantido cinza neutro para textos secundários */
-    --border-radius: 12px;
+    --text-muted: #6c757d; /* Cinza neutro para textos secundários */
+    --border-radius: 8px; /* Bordas suaves, alinhado com outras páginas */
     --transition: all 0.3s ease;
 }
 
@@ -18,7 +18,7 @@ header.text-center.mb-5 {
     font-family: 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: #27408B; /* Azul escuro para título */
+    color: var(--primary-color); /* Azul royal */
 }
 
 .lead {
@@ -33,13 +33,13 @@ header.text-center.mb-5 {
 }
 
 /* Seções */
-.h4.text-success {
+.h4.text-primary {
     font-weight: 600;
     position: relative;
     color: var(--primary-color); /* Azul royal */
 }
 
-.h4.text-success::after {
+.h4.text-primary::after {
     content: '';
     position: absolute;
     bottom: -6px;
@@ -51,9 +51,24 @@ header.text-center.mb-5 {
 
 /* Destaque estatístico */
 .bg-highlight {
-    background-color: #E6F0FA; /* Azul claro suave, consistente com outros fundos */
+    background-color: #E6F0FA; /* Azul claro suave */
     border-left: 5px solid var(--primary-color); /* Borda azul royal */
     box-shadow: 0 1px 3px rgba(65, 105, 225, 0.2); /* Sombra com tom azul royal */
+}
+
+.h5.text-primary {
+    color: var(--primary-color); /* Azul royal */
+}
+
+/* Links gerais */
+a:not(.btn) {
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:not(.btn):hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 
 /* Responsividade */

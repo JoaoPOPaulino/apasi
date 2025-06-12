@@ -1,20 +1,20 @@
 /* Footer */
-footer.bg-success {
-    background-color: #4169E1 !important;
+footer.bg-primary {
+    background-color: #4169E1; /* Azul royal */
     color: #ffffff;
 }
 
-footer.bg-success a {
-    color: #FFD700;
+footer.bg-primary a {
+    color: #FFD700; /* Amarelo para links */
     transition: color 0.3s ease;
 }
 
-footer.bg-success a:hover {
-    color: #ffffff;
+footer.bg-primary a:hover {
+    color: #ffffff; /* Branco no hover */
     text-decoration: underline;
 }
 
-
+/* Alertas */
 .alert-success {
     background-color: #E6F0FA;
     color: #333333;
@@ -22,16 +22,5 @@ footer.bg-success a:hover {
 }
 
 .alert-success .btn-close {
-    filter: invert(0.6); 
-}
-
-
-main a {
-    color: #4169E1; 
-    transition: color 0.3s ease;
-}
-
-main a:hover {
-    color: #27408B;
-    text-decoration: underline;
+    filter: invert(0.6);
 }

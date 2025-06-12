@@ -1,8 +1,8 @@
 :root {
     --primary-color: #4169E1; /* Azul royal */
     --primary-hover: #27408B; /* Azul escuro para hover */
-    --text-muted: #6c757d; /* Mantido cinza neutro para textos secundários */
-    --border-radius: 12px;
+    --text-muted: #6c757d; /* Cinza neutro para textos secundários */
+    --border-radius: 8px; /* Bordas suaves para botões */
     --transition: all 0.3s ease;
 }
 
@@ -20,7 +20,7 @@ header.text-center.mb-5 {
     font-family: 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: #27408B; /* Azul escuro para título */
+    color: var(--primary-color); /* Azul royal */
 }
 
 .lead {
@@ -31,17 +31,18 @@ header.text-center.mb-5 {
 /* Card */
 .card.shadow-lg {
     border-radius: var(--border-radius);
+
     background: linear-gradient(135deg, #ffffff 0%, #F0F4F8 100%); /* Gradiente com cinza azulado */
 }
 
 /* Seções */
-.h4.text-success {
+.h4.text-primary {
     font-weight: 600;
     position: relative;
     color: var(--primary-color); /* Azul royal */
 }
 
-.h4.text-success::after {
+.h4.text-primary::after {
     content: '';
     position: absolute;
     bottom: -6px;
@@ -67,8 +68,56 @@ header.text-center.mb-5 {
     color: #333333; /* Cinza escuro para legibilidade */
 }
 
-.table a.text-success:hover {
-    color: var(--primary-hover); /* Azul escuro no hover */
+/* Estilizar botões */
+.btn-primary {
+    background-color: var(--primary-color); /* Azul royal */
+    border-color: var(--primary-color);
+    color: #ffffff;
+    border-radius: var(--border-radius); /* Bordas arredondadas suaves */
+    padding: 6px 12px; /* Padding ajustado para botões pequenos */
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover); /* Azul escuro para hover */
+    border-color: var(--primary-hover);
+    color: #ffffff;
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+.btn-primary:active {
+    transform: translateY(0); /* Volta ao normal quando clicado */
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius); /* Bordas arredondadas suaves */
+    padding: 6px 12px; /* Padding ajustado para botões pequenos */
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+.btn-outline-primary:active {
+    transform: translateY(0); /* Volta ao normal quando clicado */
+}
+
+/* Links gerais */
+a:not(.btn) {
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:not(.btn):hover {
+    color: var(--primary-hover);
     text-decoration: underline;
 }
 
@@ -90,5 +139,10 @@ header.text-center.mb-5 {
 
     .table {
         font-size: 0.875rem;
+    }
+
+    .btn-primary, .btn-outline-primary {
+        padding: 5px 10px; /* Padding menor em telas pequenas */
+        font-size: 0.85rem;
     }
 }
